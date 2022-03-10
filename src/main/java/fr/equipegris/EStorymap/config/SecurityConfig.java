@@ -1,5 +1,6 @@
 package fr.equipegris.EStorymap.config;
 
+import fr.equipegris.EStorymap.auth.Authentification;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,12 +15,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.oauth2Login()
-                .defaultSuccessUrl("/loginSuccess")
+        http.cors().and().oauth2Login()
+                .successHandler(successHandler())
                 .failureUrl("/loginFailure")
                 .tokenEndpoint().accessTokenResponseClient(accessTokenResponseClient());
     }
 
+    @Bean
+    public Authentification successHandler(){
+        return new Authentification();
+    }
 
     private OAuth2AccessTokenResponseClient<OAuth2AuthorizationCodeGrantRequest> accessTokenResponseClient() {
         return new NimbusAuthorizationCodeTokenResponseClient();
