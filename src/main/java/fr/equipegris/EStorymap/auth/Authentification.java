@@ -39,6 +39,7 @@ public class Authentification implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         DefaultOidcUser defaultOidcUser = (DefaultOidcUser) authentication.getPrincipal();
         User user = new User(defaultOidcUser.getName(),defaultOidcUser.getFullName(),defaultOidcUser.getPicture());
+       
         checkUserIfExist(user);
 
         redirectStrategy.sendRedirect(request,response,"/");

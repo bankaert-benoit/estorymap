@@ -10,5 +10,10 @@ public class PageController {
     public String index(){
         return "index.html";
     }
+    
+    @RequestMapping("/projet")
+    public String projet() {
+    	return "projet.html";
+    }
 
 }
