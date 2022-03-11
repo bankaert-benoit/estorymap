@@ -4,8 +4,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="Process")
+@Entity(name = "Process")
 public class Process {
 	
 	@Id
@@ -20,12 +19,12 @@ public class Process {
 	public String getParticipant() {return participant;}
 	public void setParticipant(String t) {this.participant=t;}
 	
-	@OneToMany(mappedBy="Event")
+	@OneToMany(mappedBy="id_event")
 	private Set<Event> list_event = new HashSet<Event>();
 	public void addEvent(Event e) { list_event.add(e) ;}
 	public Set<Event> getEvent() {return list_event;}
 	
-	@OneToMany(mappedBy="Activity")
+	@OneToMany(mappedBy="id_activity")
 	private Set<Activity> list_activity = new HashSet<Activity>();
 	public void addActivity(Activity e) { list_activity.add(e) ;}
 	public Set<Activity> getActivity() {return list_activity;}

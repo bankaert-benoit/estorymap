@@ -2,8 +2,7 @@ package fr.equipegris.EStorymap.diagramme.bpmn;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="Activity")
+@Entity(name="Activity")
 public class Activity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = " Seq_activity ")

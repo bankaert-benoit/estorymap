@@ -5,14 +5,10 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="BPMN")
+@Entity(name="BPMN")
 public class Bpmn {
 	
-	private ManagerProcess mp;
-	private ManagerActivity ma;
-	private ManagerEvent me;
-	private EntityManager persistance;
+
 	
 	@Id
 	@GeneratedValue ( strategy = GenerationType . SEQUENCE , generator =" Seq_bpmn ")
@@ -26,29 +22,9 @@ public class Bpmn {
 	public String getTitre() {return titre;}
 	public void setTitre(String t) {this.titre=t;}
 	
-	@OneToMany(mappedBy="Process")
+	@OneToMany(mappedBy="id_process")
 	private Set<Process> list_process = new HashSet<Process>();
 	public void addProcess(Process e) { list_process.add(e) ;}
 	public Set<Process> getProcess() {return list_process;}
-	
-	public void debuter() {
-        this.persistance.getTransaction().begin();
-    }
-
-    public ManagerProcess getManagerProcess() {
-    	return mp;
-    }
-    public ManagerActivity getManagerActivity() {
-		return ma;
-    }
-    
-    public ManagerEvent getManagerEvent() {
-    	return me;
-    }
-
-    public void valider() {
-        this.persistance.getTransaction().commit();
-
-    }
 	
 }
