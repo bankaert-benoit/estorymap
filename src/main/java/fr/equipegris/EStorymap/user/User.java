@@ -11,9 +11,9 @@ public class User {
     @Id
     @Column(name="idu")
     private String id;
-    @Column(name="nom")
+    @Column(name="nom",nullable = false)
     private String name;
-    @Column(name="photo")
+    @Column(name="photo",nullable = false)
     private String pictureUrl;
 
     public User(){}
