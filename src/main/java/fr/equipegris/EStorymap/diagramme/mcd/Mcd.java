@@ -21,7 +21,10 @@ public class Mcd {
 	public String getTitre() {return titre;}
 	public void setTitre(String t) {this.titre=t;}
 	
-	//TODO
+	@OneToMany(mappedBy="id_entity")
+	private Set<McdEntity> mcdEntities =  new HashSet<McdEntity>(); 
+	public void addEntity(McdEntity e) { mcdEntities.add(e) ;}
+	public Set<McdEntity> getProcess() {return mcdEntities;} 
 	
 	
 }
