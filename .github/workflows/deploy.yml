@@ -25,7 +25,7 @@ jobs:
       - name: Build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./mvnw package -Dmaven.test.skip
+        run: ./mvnw clean package -Dmaven.test.skip
 
       - name: Deploy
         uses: appleboy/scp-action@master
