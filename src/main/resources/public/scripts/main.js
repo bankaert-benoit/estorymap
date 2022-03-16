@@ -19,14 +19,14 @@ async function uploadFile() {
 	let formData = new FormData();
 	let mcd = document.getElementById("mcd-filepicker").files[0];
 	//let bpmn = document.getElementById("bpmn-filepicker").files[0];
-	//let mfc = document.getElementById("mfc-filepicker").files[0];
+	let mfc = document.getElementById("mfc-filepicker").files[0];
 
 	//if ( mcd == null | undefined || bpmn == null | undefined || mfc == null | undefined ) {
 	//	alert("Please add all 3 file before uploading...");
 	//} else {
 		formData.append('mcd',mcd);
 	//	formData.append('bpmn',bpmn);
-	//	formData.append('mfc',mfc);
+		formData.append('mfc',mfc);
 
 		let response = await fetch("upload", {
 			method: "POST",
