@@ -17,17 +17,25 @@ function updateLogButton(isAuth) {
 
 async function uploadFile() {
 	let formData = new FormData();
-	let file = document.getElementById("filepicker").files[0];
-	
+	let mcd = document.getElementById("mcd-filepicker").files[0];
+	//let bpmn = document.getElementById("bpmn-filepicker").files[0];
+	//let mfc = document.getElementById("mfc-filepicker").files[0];
 
-	formData.append('file',file);
+	//if ( mcd == null | undefined || bpmn == null | undefined || mfc == null | undefined ) {
+	//	alert("Please add all 3 file before uploading...");
+	//} else {
+		formData.append('mcd',mcd);
+	//	formData.append('bpmn',bpmn);
+	//	formData.append('mfc',mfc);
 
-	let response = await fetch("upload", {
-		method: "POST",
-		body: formData
-	});
+		let response = await fetch("upload", {
+			method: "POST",
+			body: formData
+		});
 
-	if ( response.status == 200) {
-		alert("File successfully upload.");
+		if ( response.status == 200) {
+			alert("File successfully upload.");
 	}
+	//}
+	
 }

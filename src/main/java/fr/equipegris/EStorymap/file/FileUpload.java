@@ -19,7 +19,7 @@ public class FileUpload {
 	private FileEntityRepository repo;
 
     @PostMapping(value = "/upload")
-    public ResponseEntity<?> retrieveFile(@RequestParam("file") MultipartFile req) {
+    public ResponseEntity<?> retrieveFile(@RequestParam("mcd") MultipartFile req) {
         System.out.println(req);
         //save file to DB
         if (req.isEmpty()) {
@@ -33,7 +33,7 @@ public class FileUpload {
     
     /**
      * Save an uploaded file to DB
-     * @param file : MultipartFile from a request
+     * @param mpFile : MultipartFile from a request
      */
     public void saveUploadedFileToDB(MultipartFile mpFile) {
     	try {

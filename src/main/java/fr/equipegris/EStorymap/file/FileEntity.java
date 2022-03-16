@@ -12,6 +12,7 @@ public class FileEntity {
 	private Long id_file;
 	
 	private String filename;
+	@Column(length = 32767)
 	private byte[] content;
 	
 	/**
