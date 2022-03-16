@@ -21,14 +21,12 @@ public class FileUpload {
     @PostMapping(value = "/upload")
     public ResponseEntity<?> retrieveFile(@RequestParam("mcd") MultipartFile req) {
         System.out.println(req);
-        //save file to DB
         if (req.isEmpty()) {
-        	//TODO: dire au client que son fichier est vide
-        	// et stopper exécution
+        	return new ResponseEntity<String> (HttpStatus.NO_CONTENT);
         }else {
-        	 this.saveUploadedFileToDB(req);
-        }
-        return new ResponseEntity<String>(HttpStatus.OK);
+        	this.saveUploadedFileToDB(req);
+        	return new ResponseEntity<String>(HttpStatus.OK);
+        }  
     }
     
     /**
