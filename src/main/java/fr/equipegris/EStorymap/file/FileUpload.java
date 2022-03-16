@@ -33,20 +33,6 @@ public class FileUpload {
         	 //this.saveUploadedFileToDB(req);
         }
 
-		try {
-			File tmp = convert(mfc);
-			FileInputStream fis = new FileInputStream(tmp);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			Object o = ois.readObject();
-			List<Composant> composants = (ArrayList) ois.readObject();
-
-			Mfc mfc1 = new Mfc(mfc.getOriginalFilename(),composants);
-			System.out.println(mfc1.toString());
-
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
 
 		return new ResponseEntity<String>(HttpStatus.OK);
     }
@@ -70,13 +56,6 @@ public class FileUpload {
     	
     }
 
-	public File convert(MultipartFile file) throws IOException {
-		File convFile = File.createTempFile(System.getProperty("java.io.tmpdir"), file.getOriginalFilename());
-		convFile.createNewFile();
-		FileOutputStream fos = new FileOutputStream(convFile);
-		fos.write(file.getBytes());
-		fos.close();
-		return convFile;
-	}
+	
 
 }
