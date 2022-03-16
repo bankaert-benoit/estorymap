@@ -32,7 +32,9 @@ async function uploadFile() {
 			method: "POST",
 			body: formData
 		});
-
+		if (response.status == 204){
+			alert("Error : empty file");
+		}
 		if ( response.status == 200) {
 			alert("File successfully upload.");
 	}
