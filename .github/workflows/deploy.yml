@@ -33,6 +33,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          source: "target/"
+          source: "~/target/"
           target: "~/web/e-storymap-server-benoit"
           rm: true
