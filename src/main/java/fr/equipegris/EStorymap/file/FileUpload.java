@@ -1,12 +1,12 @@
 package fr.equipegris.EStorymap.file;
 
+
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.io.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,14 +19,14 @@ public class FileUpload {
 	private FileEntityRepository repo;
 
     @PostMapping(value = "/upload")
-    public ResponseEntity<?> retrieveFile(@RequestParam("mcd") MultipartFile req) {
+    public ResponseEntity<?> retrieveFile(@RequestParam("mcd") MultipartFile req, @RequestParam("mfc") MultipartFile mfc) {
         System.out.println(req);
         if (req.isEmpty()) {
         	return new ResponseEntity<String> (HttpStatus.NO_CONTENT);
         }else {
         	this.saveUploadedFileToDB(req);
         	return new ResponseEntity<String>(HttpStatus.OK);
-        }  
+        }      	 
     }
     
     /**
@@ -47,4 +47,7 @@ public class FileUpload {
 		}
     	
     }
+
+
+
 }
