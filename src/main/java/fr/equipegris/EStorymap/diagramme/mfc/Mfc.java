@@ -1,5 +1,8 @@
 package fr.equipegris.EStorymap.diagramme.mfc;
 
+import fr.equipegris.EStorymap.diagramme.mfc.composant.Acteur;
+import fr.equipegris.EStorymap.diagramme.mfc.composant.Flux;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,18 +21,28 @@ public class Mfc {
 	public Long getId() {return id_mfc;}
 	
 	//@Column
-	String titre;
+	private String titre;
 	public String getTitre() {return titre;}
 	public void setTitre(String t) {this.titre=t;}
 
 
+	private List<Acteur> acteurs;
 
+	private List<Flux> flux;
 
-	public Mfc(String titre) {
+	public Mfc(String titre, List<Acteur> acteurs, List<Flux> flux) {
 		this.titre = titre;
-
+		this.acteurs = acteurs;
+		this.flux = flux;
 	}
 
-
-
+	@Override
+	public String toString() {
+		return "Mfc{" +
+				"id_mfc=" + id_mfc +
+				", titre='" + titre + '\'' +
+				", acteurs=" + acteurs.toString() +
+				", flux=" + flux.toString() +
+				'}';
+	}
 }

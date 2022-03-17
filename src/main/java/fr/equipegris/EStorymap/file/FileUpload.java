@@ -1,6 +1,7 @@
 package fr.equipegris.EStorymap.file;
 
 
+import fr.equipegris.EStorymap.diagramme.mfc.Mfc;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +21,15 @@ public class FileUpload {
 
     @PostMapping(value = "/upload")
     public ResponseEntity<?> retrieveFile(@RequestParam("mcd") MultipartFile req, @RequestParam("mfc") MultipartFile mfc) {
-        System.out.println(req);
+		Mfc mfc1 = FileBuilder.buildMfc(mfc);
+
         if (req.isEmpty()) {
         	return new ResponseEntity<String> (HttpStatus.NO_CONTENT);
         }else {
         	this.saveUploadedFileToDB(req);
         	return new ResponseEntity<String>(HttpStatus.OK);
-        }      	 
+        }
+
     }
     
     /**

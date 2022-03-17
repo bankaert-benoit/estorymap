@@ -1,15 +1,10 @@
 package fr.equipegris.EStorymap.diagramme.mfc.composant;
 
-import fr.equipegris.EStorymap.diagramme.mfc.Composant;
-
-import java.io.Serializable;
-
-public class ActeurInterne extends Composant implements Serializable {
+public class Acteur {
 
     private String nom;
 
-
-    public ActeurInterne(String nom){
+    public Acteur(String nom) {
         this.nom = nom;
     }
 
@@ -19,5 +14,12 @@ public class ActeurInterne extends Composant implements Serializable {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    @Override
+    public String toString() {
+        return "Acteur{" +
+                "nom='" + nom + '\'' +
+                '}';
     }
 }
