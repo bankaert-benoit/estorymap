@@ -1,9 +1,9 @@
 package fr.equipegris.EStorymap.user;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import fr.equipegris.EStorymap.projet.Projet;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "Utilisateur")
 public class User {
@@ -15,6 +15,9 @@ public class User {
     private String name;
     @Column(name="photo",nullable = false)
     private String pictureUrl;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private Set<Projet> projetSet;
 
     public User(){}
 

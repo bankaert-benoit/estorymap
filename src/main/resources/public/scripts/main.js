@@ -1,4 +1,8 @@
-fetch("isAuth").then(response => response.json()).then(json => updateLogButton(json));
+let isAuth;
+fetch("isAuth").then(response => response.json()).then(json => {
+	isAuth = json;
+	updateLogButton(json)
+});
 
 function updateLogButton(isAuth) {
 	if(isAuth){
@@ -40,4 +44,30 @@ async function uploadFile() {
 	}
 	//}
 	
+}
+
+function createProjet() {
+	if (isAuth) {
+		let formData = new FormData();
+
+		formData.append("name","Projet 1");
+		fetch("/createProject", {
+			method: "POST",
+			body: formData
+		}).then(response => {
+			if ( response.status == 200) {
+				alert("Project created.");
+			}
+		})
+	}
+}
+
+function getProjet() {
+	if (isAuth) {
+		fetch("/getProject", {
+			method: "GET"
+		}).then(response => {
+			console.log(response.json());
+		})
+	}
 }

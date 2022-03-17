@@ -17,7 +17,9 @@ import org.w3c.dom.Document;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FileBuilder {
 
@@ -29,8 +31,8 @@ public class FileBuilder {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List<Acteur> acteurs = getMfcActeurs(doc);
-        List<Flux> flux = getMfcFlux(doc);
+        Set<Acteur> acteurs = getMfcActeurs(doc);
+        Set<Flux> flux = getMfcFlux(doc);
 
         return new Mfc(titre, acteurs, flux);
     }
@@ -61,8 +63,8 @@ public class FileBuilder {
      * @param doc
      * @return la liste des acteurs
      */
-    private static List<Acteur> getMfcActeurs(Document doc) {
-        List<Acteur> acteurs = new ArrayList<>();
+    private static Set<Acteur> getMfcActeurs(Document doc) {
+        Set<Acteur> acteurs = new HashSet<>();
         NodeList nodes = doc.getElementsByTagName("mxCell");
         for(int i = 0; i < nodes.getLength(); i++){
             Node node = nodes.item(i);
@@ -81,8 +83,8 @@ public class FileBuilder {
      * @param doc
      * @return la liste des flux
      */
-    private static List<Flux> getMfcFlux(Document doc) {
-        List<Flux> flux = new ArrayList<>();
+    private static Set<Flux> getMfcFlux(Document doc) {
+        Set<Flux> flux = new HashSet<>();
         NodeList nodes = doc.getElementsByTagName("mxCell");
         for(int i = 0; i < nodes.getLength(); i++) {
             Node node = nodes.item(i);
