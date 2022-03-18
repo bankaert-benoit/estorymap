@@ -19,7 +19,7 @@ function updateLogButton(isAuth) {
 	
 }
 
-async function uploadFile() {
+/*async function uploadFile() {
 	let formData = new FormData();
 	let mcd = document.getElementById("mcd-filepicker").files[0];
 	let bpmn = document.getElementById("bpmn-filepicker").files[0];
@@ -44,7 +44,7 @@ async function uploadFile() {
 		}
 	}
 	
-}
+}*/
 
 
 function getResultAnalyse(){
