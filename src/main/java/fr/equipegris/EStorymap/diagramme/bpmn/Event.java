@@ -32,5 +32,21 @@ public class Event {
     private Process process;
     public void setProcess(Process a) {process = a;}
     public Process getRealisateur() {return process;}
-	
+
+    public Event(String name, boolean isStart, boolean isEnd){
+		this.name = name;
+		this.isStart = isStart;
+		this.isEnd = isEnd;
+	}
+
+	@Override
+	public String toString() {
+		return "Event{" +
+				"id_event=" + id_event +
+				", name='" + name + '\'' +
+				", isEnd=" + isEnd +
+				", isStart=" + isStart +
+				", process=" + process +
+				'}';
+	}
 }

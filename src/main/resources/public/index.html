@@ -21,7 +21,13 @@
 <body style="border-style: none;">
     <header style="background: rgba(255,255,255,0);height: 61px;">
         <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button" style="height: 65px;background: #022534;border: 1.4px none rgb(255,255,255);border-bottom: 0.1px solid rgba(255,255,255,0.33);">
-            <div class="container"><a class="navbar-brand" href="#" style="color: rgb(255,255,255);font-size: 24px;">eStoryMap</a><span class="d-xxl-flex actions"> <a class="btn btn-light action-button" role="button" id="login-button" href="#" style="background: #56c6c6;border-radius: 32px;margin-bottom: 25px;margin-top: 25px;height: 40px;width: 120px;color: rgb(255,255,255);border-style: none;">Connexion</a><img class="img-fluid" id="user-pic" style="border-radius: 50%;width: 50px;height: 50px;margin: auto;" alt="profil-picture" src="assets/img/default-profil-picture.jpg"></span></div>
+            <div class="container">
+                <a class="navbar-brand" href="/" style="color: rgb(255,255,255);font-size: 24px;">eStoryMap</a>
+                <span class="d-xxl-flex actions"> 
+                    <a class="btn btn-light action-button" role="button" id="login-button" href="/oauth2/authorization/google" style="background: #56c6c6;border-radius: 32px;margin-bottom: 25px;margin-top: 25px;height: 40px;width: 120px;color: rgb(255,255,255);border-style: none;">Connexion</a>
+                    <img class="img-fluid" id="user-pic" style="border-radius: 50%;width: 50px;height: 50px;margin: auto;" alt="profil-picture" src="assets/img/default-profil-picture.jpg">
+                </span>
+            </div>
         </nav>
     </header>
     <div id="row" style="background: #ffffff;">
@@ -63,12 +69,18 @@
                 <div class="row">
                     <div class="col-md-6" style="height: 100%;max-width: 100%;border-right: 0.1px solid rgba(0,0,0,0.2);padding-right: 25px;padding-left: 0px;">
                         <form style="width: auto;">
-                            <h6 class="text-center mx-auto" style="margin-top: 30px;margin-bottom: 30px;width: 100%;max-width: 100%;">Créer un nouveau projet</h6><input class="form-control mx-auto" type="text" placeholder="Nom du projet" style="margin: 10px;width: 250px;"><a class="btn btn-light d-lg-flex mx-auto justify-content-lg-center action-button" role="button" href="analyse.html" style="background: #56c6c6;color: rgb(255,255,255);border-radius: 32px;margin-bottom: 25px;margin-top: 25px;height: 40px;width: 50%;">Créer</a>
+                            <h6 class="text-center mx-auto" style="margin-top: 30px;margin-bottom: 30px;width: 100%;max-width: 100%;">Créer un nouveau projet</h6>
+                            <input id="project-name" class="form-control mx-auto" type="text" placeholder="Nom du projet" style="margin: 10px;width: 250px;">
+                            <button onclick="createProject()" class="btn btn-light d-lg-flex mx-auto justify-content-lg-center action-button" style="background: #56c6c6;color: rgb(255,255,255);border-radius: 32px;margin-bottom: 25px;margin-top: 25px;height: 40px;width: 50%;">Créer</button>
                         </form>
                     </div>
                     <div class="col-md-6">
                         <div style="margin-top: 50px;">
-                            <h6 class="mx-auto" style="text-align: center;margin-top: 30px;margin-bottom: 30px;">Connectez vous pour plus de fonctionnalités !</h6><button class="btn btn-primary d-flex d-lg-flex mx-auto justify-content-lg-center align-items-lg-center" type="button" style="border-radius: 64px;background: rgba(255,255,255,0);color: rgb(0,0,0);border-top-color: rgb(0,0,0);border-right-color: rgb(0,0,0);border-bottom-color: rgb(0,0,0);border-left-color: rgb(0,0,0);"><i class="fa fa-google" style="margin: 0px;margin-right: 8px;"></i>S'identifier avec Google</button>
+                            <h6 class="mx-auto" style="text-align: center;margin-top: 30px;margin-bottom: 30px;">Connectez vous pour plus de fonctionnalités !</h6>
+                            <a href="/oauth2/authorization/google" class="btn btn-primary d-flex d-lg-flex mx-auto justify-content-lg-center align-items-lg-center" type="button" style="border-radius: 64px;background: rgba(255,255,255,0);color: rgb(0,0,0);border-top-color: rgb(0,0,0);border-right-color: rgb(0,0,0);border-bottom-color: rgb(0,0,0);border-left-color: rgb(0,0,0);">
+                                <i class="fa fa-google" style="margin: 0px;margin-right: 8px;"></i>
+                                S'identifier avec Google
+                            </a>
                         </div>
                     </div>
                 </div>

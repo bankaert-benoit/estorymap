@@ -26,5 +26,18 @@ public class Bpmn {
 	private Set<Process> list_process = new HashSet<Process>();
 	public void addProcess(Process e) { list_process.add(e) ;}
 	public Set<Process> getProcess() {return list_process;}
-	
+
+	public Bpmn(String titre, Set<Process> processes){
+		this.titre = titre;
+		this.list_process = processes;
+	}
+
+	@Override
+	public String toString() {
+		return "Bpmn{" +
+				"id_bpmn=" + id_bpmn +
+				", titre='" + titre + '\'' +
+				", list_process=" + list_process.toString() +
+				'}';
+	}
 }

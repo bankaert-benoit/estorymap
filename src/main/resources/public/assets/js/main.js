@@ -4,6 +4,10 @@ fetch("isAuth").then(response => response.json()).then(json => {
 	updateLogButton(json)
 });
 
+function connect(){
+	window.url = "/oauth2/authorization/google";
+}
+
 function updateLogButton(isAuth) {
 	if(isAuth){
 		document.getElementById("login-button").setAttribute("style","display:none;");
@@ -12,6 +16,7 @@ function updateLogButton(isAuth) {
 			return res.json();
 		}).then(json => {
 			document.getElementById("user-pic").setAttribute("src",json.url);
+			document.getElementById("user-pic").setAttribute("style","border-radius: 50%;width: 50px;height: 50px;margin: auto;");
 		});
 	} else {
 		document.getElementById("user-pic").setAttribute("style","display:none;");
@@ -21,16 +26,20 @@ function updateLogButton(isAuth) {
 
 async function uploadFile() {
 	let formData = new FormData();
-	let mcd = document.getElementById("mcd-filepicker").files[0];
-	//let bpmn = document.getElementById("bpmn-filepicker").files[0];
-	let mfc = document.getElementById("mfc-filepicker").files[0];
+	let file = document.getElementById("file-picker").files[0];
+	let type;
+	if (document.getElementById("formCheck-mcd").checked) {
+		type = "mcd"
+	}
+	if (document.getElementById("formCheck-mfc").checked) {
+		type = "mfc"
+	}
+	if (document.getElementById("formCheck-bpmn").checked) {
+		type = "bpmn"
+	}
 
-	//if ( mcd == null | undefined || bpmn == null | undefined || mfc == null | undefined ) {
-	//	alert("Please add all 3 file before uploading...");
-	//} else {
-		formData.append('mcd',mcd);
-	//	formData.append('bpmn',bpmn);
-		formData.append('mfc',mfc);
+	formData.append('file',file);
+	formData.append('type',type);
 
 		let response = await fetch("upload", {
 			method: "POST",
@@ -44,4 +53,16 @@ async function uploadFile() {
 	}
 	//}
 	
+}
+
+function createProject() {
+	if (isAuth) {
+		let formData = new FormData();
+		let name = document.getElementById("project-name").value;
+		formData.append("name",name);
+		fetch("/createProject", {
+			method: "POST",
+			body: formData
+		});
+	}
 }

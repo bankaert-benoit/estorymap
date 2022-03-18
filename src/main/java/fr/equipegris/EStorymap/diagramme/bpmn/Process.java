@@ -35,6 +35,21 @@ public class Process {
     private Bpmn bpmn;
     public void setBpmn(Bpmn a) {bpmn = a;}
     public Bpmn getRealisateur() {return bpmn;}
-	
 
+    public Process(String participant,Set<Event> events, Set<Activity> activities) {
+    	this.participant = participant;
+    	this.list_event = events;
+    	this.list_activity = activities;
+	}
+
+	@Override
+	public String toString() {
+		return "Process{" +
+				"id_process=" + id_process +
+				", participant='" + participant + '\'' +
+				", list_event=" + list_event.toString() +
+				", list_activity=" + list_activity.toString() +
+				", bpmn=" + bpmn +
+				'}';
+	}
 }
