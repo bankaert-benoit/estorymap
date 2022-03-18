@@ -46,6 +46,18 @@ async function uploadFile() {
 	
 }
 
+
+function getResultAnalyse(){
+	if (isAuth) {
+		fetch("/resultatAnalyse", {
+			method: "GET"
+		}).then(response => {
+			console.log(response.json());
+		})
+	}
+	
+}
+
 function createProjet() {
 	if (isAuth) {
 		let formData = new FormData();
