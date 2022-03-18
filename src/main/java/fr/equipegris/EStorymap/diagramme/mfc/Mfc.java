@@ -3,8 +3,6 @@ package fr.equipegris.EStorymap.diagramme.mfc;
 import fr.equipegris.EStorymap.diagramme.mfc.composant.Acteur;
 import fr.equipegris.EStorymap.diagramme.mfc.composant.Flux;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;

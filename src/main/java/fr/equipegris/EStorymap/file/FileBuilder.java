@@ -1,6 +1,9 @@
 package fr.equipegris.EStorymap.file;
 
 import com.nimbusds.oauth2.sdk.id.Actor;
+import fr.equipegris.EStorymap.diagramme.mcd.Attribut;
+import fr.equipegris.EStorymap.diagramme.mcd.Entity;
+import fr.equipegris.EStorymap.diagramme.mcd.Mcd;
 import fr.equipegris.EStorymap.diagramme.mfc.Mfc;
 import fr.equipegris.EStorymap.diagramme.mfc.composant.Acteur;
 import fr.equipegris.EStorymap.diagramme.mfc.composant.Flux;
@@ -35,6 +38,19 @@ public class FileBuilder {
         Set<Flux> flux = getMfcFlux(doc);
 
         return new Mfc(titre, acteurs, flux);
+    }
+
+    public static Mcd buildMcd(MultipartFile file) {
+        String titre = file.getOriginalFilename();
+        Document doc = null;
+        try {
+            doc = fileToDocument(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Set<Entity> entities = getMcdEntity(doc);
+
+        return new Mcd(titre,entities);
     }
 
     private static Document fileToDocument(MultipartFile file) throws IOException {
@@ -100,4 +116,33 @@ public class FileBuilder {
         return flux;
     }
 
+    private static Set<Entity> getMcdEntity(Document doc){
+        Set<Entity> entities = new HashSet<>();
+        NodeList nodes = doc.getElementsByTagName("entite");
+        for(int i = 0; i < nodes.getLength(); i++){
+            Node node = nodes.item(i);
+            NodeList attribut = node.getChildNodes();
+            if (node.getNodeType() == Node.ELEMENT_NODE ) {
+                Element element = (Element) node;
+                String nom = element.getAttribute("name");
+
+                entities.add(new Entity(nom, getMcdEntityAttribut(attribut)));
+            }
+        }
+        return entities;
+    }
+
+    private static Set<Attribut> getMcdEntityAttribut(NodeList attribut){
+        Set<Attribut> res = new HashSet<>();
+        for(int i = 0; i < attribut.getLength(); i++){
+            Node node = attribut.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String nom = element.getAttribute("name");
+                String type = element.getAttribute("type");
+                res.add(new Attribut(nom,type));
+            }
+        }
+        return res;
+    }
 }
