@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>eStoryMap</title>
+    <meta name="description" content="Outil de comparaison de diagrammes BPMN, MCF, et MCD.">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="assets/css/Login-Box-En.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <header style="background: rgba(255,255,255,0);height: 61px;">
+        <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button" style="height: 65px;background: #022534;border: 1.4px none rgb(255,255,255);border-bottom: 0.1px solid rgba(255,255,255,0.33);">
+            <div class="container"><a class="navbar-brand" href="#" style="color: rgb(255,255,255);font-size: 24px;">eStoryMap</a><span class="d-xxl-flex actions"> <a class="btn btn-light action-button" role="button" id="login-button" href="/oauth2/authorization/google" style="background: #56c6c6;border-radius: 32px;margin-bottom: 25px;margin-top: 25px;height: 40px;width: 120px;color: rgb(255,255,255);border-style: none;">Connexion</a><img class="img-fluid" id="user-pic" style="border-radius: 50%;width: 50px;height: 50px;margin: auto;" alt="profil-picture" src="assets/img/default-profil-picture.jpg"></span></div>
+        </nav>
+    </header>
+    <div>
+        <div id="row" style="background: #ffffff;">
+            <div class="d-xxl-flex mx-auto" id="box" style="padding-bottom: 35px;">
+                <div class="container">
+                    <div class="row" style="border-bottom: 0.1px none rgba(0,0,0,0.2) ;">
+                        <div class="col my-auto" style="border-bottom-width: 0.1px;border-bottom-color: rgba(0,0,0,0.2);">
+                            <h1 class="text-center mx-auto" style="color: #454545;font-size: 46px;font-weight: bold;margin-bottom: 20px;">eStoryMap</h1>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 30px;">
+                        <div class="col-md-4" style="border-right: 0.1px solid rgba(0,0,0,0.2) ;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-circle d-xxl-flex mx-auto justify-content-xxl-center align-items-xxl-center" id="icon">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"></path>
+                            </svg>
+                            <h1 class="text-center" id="title-1" style="color: #56c6c6;">Simple</h1>
+                            <p class="text-center">Un outil destiné aux débutants comme aux confirmés</p>
+                        </div>
+                        <div class="col-md-4" style="border-right: 0.1px solid rgba(0,0,0,0.2) ;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-lightbulb d-xxl-flex mx-auto" id="icon">
+                                <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"></path>
+                            </svg>
+                            <h1 class="text-center" id="title-2" style="color: #56c6c6;">Intelligent</h1>
+                            <p class="text-center">Un outil qui vous comprend et qui vous aide dans votre analyse</p>
+                        </div>
+                        <div class="col-md-4"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-list-check d-xxl-flex mx-auto" id="icon">
+                                <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"></path>
+                            </svg>
+                            <h1 class="text-center" id="title-3" style="color: #56c6c6;">Complet</h1>
+                            <p class="text-center">Analyse et compare vos fichiers BPMN, MCD et MCF</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="row">
+            <div class="d-xxl-flex mx-auto" id="box" style="padding-bottom: 35px;">
+                <div class="container">
+                    <div class="row" style="border-bottom: 0.1px none rgba(0,0,0,0.2) ;">
+                        <div class="col my-auto" style="border-bottom-width: 0.1px;border-bottom-color: rgba(0,0,0,0.2);">
+                            <h1 class="text-center mx-auto" style="color: #454545;font-size: 46px;font-weight: bold;margin-bottom: 20px;">Compatibilités</h1>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 30px;">
+                        <div class="col-md-4" style="border-right: 0.1px solid rgba(0,0,0,0.2) ;">
+                            <h1 class="text-center" id="title" style="color: #56c6c6;">MCD</h1>
+                            <p class="text-center">Les MCD doivent être au format JMerise ou provenir directement du logiciel pour être reconnus lors de l'analyse</p>
+                        </div>
+                        <div class="col-md-4" style="border-right: 0.1px solid rgba(0,0,0,0.2) ;">
+                            <h1 class="text-center" id="title" style="color: #56c6c6;">BPMN</h1>
+                            <p class="text-center">eStoryMap ne reconnait que les diagrammes BPMN provenant du site web BPMN.io</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h1 class="text-center" id="title" style="color: #56c6c6;">MCF</h1>
+                            <p class="text-center">Pour que les modèles conceptuels de flux soient reconnus, ils doivent provenir du logiciel JFlux</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="row" style="background: #ffffff;">
+            <div class="d-xxl-flex mx-auto" id="box" style="padding-bottom: 35px;">
+                <div class="container">
+                    <div class="row" style="border-bottom: 0.1px none rgba(0,0,0,0.2) ;">
+                        <div class="col">
+                            <h1 class="text-center" id="title" style="color: #454545;font-size: 46px;font-weight: bold;margin-bottom: 20px;">Histoire</h1>
+                            <p>Réalisée par 5 étudiants de la licence MIAGE de l'Université de Lille, cette application a été produite dans le cadre du module Projet. Elle sera soumise à l'inspection scrupuleuse et détaillée de notre professeur de bases de données, à qui nous souhaitons bon courage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="easter-egg" class="footer-basic" style="background: #022534;">
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="index.html" style="color: #ffffff;">Accueil</a></li>
+            <li class="list-inline-item"></li>
+            <li class="list-inline-item"><a href="about.html" style="color: #ffffff;">A propos</a></li>
+            <li class="list-inline-item"></li>
+            <li class="list-inline-item"><a href="#" style="color: #ffffff;">Privacy Policy</a></li>
+        </ul><a class="btn btn-primary" role="button" href="assets/img/easter-egg.jpg" style="background-color: rgba(255,255,255,0);color: rgba(255,255,255,0);border: none;">Button</a>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/analyse.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

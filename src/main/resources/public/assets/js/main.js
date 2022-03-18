@@ -24,35 +24,39 @@ function updateLogButton(isAuth) {
 	
 }
 
-async function uploadFile() {
-	let formData = new FormData();
-	let file = document.getElementById("file-picker").files[0];
-	let type;
-	if (document.getElementById("formCheck-mcd").checked) {
-		type = "mcd"
+function uploadFile() {
+    
+    let file = document.getElementById("import-file").files[0];
+    let formData = new FormData();
+    
+    if(document.getElementById("formCheck-1").checked)
+        {
+            formData.append('bpmn',bpmn);
+        } else {
+            if(document.getElementById("formCheck-2").checked)
+                {
+                    formData.append('mfc',mfc);
+                } else {
+                    if(document.getElementById("formCheck-3").checked)
+                        {
+                            formData.append('mcd',mfc);
+                        } else {
+                            alert("Veuillez sélectionner le type du diagramme");
+                        }
+                }
+        }
+    formData.append('file', file);
+    
+	let response = await fetch("upload", {
+		method: "POST",
+		body: formData
+	});
+	if (response.status == 204){
+		alert("Error : empty file");
 	}
-	if (document.getElementById("formCheck-mfc").checked) {
-		type = "mfc"
+	if ( response.status == 200) {
+		alert("File successfully upload.");
 	}
-	if (document.getElementById("formCheck-bpmn").checked) {
-		type = "bpmn"
-	}
-
-	formData.append('file',file);
-	formData.append('type',type);
-
-		let response = await fetch("upload", {
-			method: "POST",
-			body: formData
-		});
-		if (response.status == 204){
-			alert("Error : empty file");
-		}
-		if ( response.status == 200) {
-			alert("File successfully upload.");
-	}
-	//}
-	
 }
 
 function createProject() {
