@@ -28,6 +28,9 @@ public class Mfc {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
 	private Set<Flux> flux;
+	public Set<Flux> getFlux(){
+		return this.flux;
+	}
 
 	public Mfc(String titre, Set<Acteur> acteurs, Set<Flux> flux) {
 		this.titre = titre;
