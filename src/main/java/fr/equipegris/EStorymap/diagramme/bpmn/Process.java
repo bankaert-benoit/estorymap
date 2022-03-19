@@ -42,6 +42,8 @@ public class Process {
     	this.list_activity = activities;
 	}
 
+	public Process() {}
+
 	@Override
 	public String toString() {
 		return "Process{" +

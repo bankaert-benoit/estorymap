@@ -23,4 +23,7 @@ public class PageController {
     @RequestMapping("/settings")
     public String settings() {return "settings.html";}
 
+    @RequestMapping("/about")
+    public String about() {return "about.html";}
+
 }

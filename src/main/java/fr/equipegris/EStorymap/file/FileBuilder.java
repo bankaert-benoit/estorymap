@@ -1,9 +1,7 @@
 package fr.equipegris.EStorymap.file;
 
 
-import fr.equipegris.EStorymap.diagramme.bpmn.Activity;
-import fr.equipegris.EStorymap.diagramme.bpmn.Bpmn;
-import fr.equipegris.EStorymap.diagramme.bpmn.Event;
+import fr.equipegris.EStorymap.diagramme.bpmn.*;
 import fr.equipegris.EStorymap.diagramme.bpmn.Process;
 import fr.equipegris.EStorymap.diagramme.mcd.Attribut;
 import fr.equipegris.EStorymap.diagramme.mcd.Entity;
@@ -12,6 +10,8 @@ import fr.equipegris.EStorymap.diagramme.mfc.Mfc;
 import fr.equipegris.EStorymap.diagramme.mfc.composant.Acteur;
 import fr.equipegris.EStorymap.diagramme.mfc.composant.Flux;
 import org.hibernate.dialect.PostgreSQL10Dialect;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Element;
@@ -68,7 +68,6 @@ public class FileBuilder {
             e.printStackTrace();
         }
         Set<Process> processes = getBpmnProcess(doc);
-
         return new Bpmn(titre,processes);
     }
 

@@ -26,6 +26,8 @@ public class Activity {
 		this.name = name;
 	}
 
+	public Activity() {}
+
 	@Override
 	public String toString() {
 		return "Activity{" +

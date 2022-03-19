@@ -38,13 +38,13 @@ public class Mfc {
 		this.flux = flux;
 	}
 
+	public Mfc(){}
+
 	@Override
 	public String toString() {
 		return "Mfc{" +
 				"id_mfc=" + id_mfc +
 				", titre='" + titre + '\'' +
-				", acteurs=" + acteurs.toString() +
-				", flux=" + flux.toString() +
 				'}';
 	}
 }

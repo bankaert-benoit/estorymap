@@ -41,6 +41,8 @@ public class Entity {
 		this.attributs = attributs;
 	}
 
+	public Entity() {}
+
 	@Override
 	public String toString() {
 		return "Entity{" +

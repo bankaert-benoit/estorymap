@@ -32,6 +32,10 @@ public class DiagrammeComparator {
      * @param bpmn
      */
     public DiagrammeComparator(Mfc mfc, Mcd mcd, Bpmn bpmn) {
+    	this.m_Mfc = mfc;
+    	this.m_Mcd = mcd;
+    	this.m_Bpmn = bpmn;
+    	System.out.println(this.m_Bpmn.toString());
     }
     
     /**
@@ -40,7 +44,7 @@ public class DiagrammeComparator {
      *            <false> otherwise 
      */
     public boolean compare() {
-        if (this.compareFlux() && this.compareActors()) {
+        if (this.compareFlux()) {
             return true;
         }else {
             return false;
@@ -55,18 +59,21 @@ public class DiagrammeComparator {
     public boolean compareFlux() {
     	Set<Event> bpmnFlux = this.getEventFromAllProcessInBpmn();
     	Set<Flux> mfcFlux = this.m_Mfc.getFlux();
-    	if (bpmnFlux.size() != mfcFlux.size()) {
-    		return false;
-    	}
     	//comparaison des nom des flux
     	List<String> eventsNameBPMN = this.getNamesOfBpmnEvents(bpmnFlux);
+    	System.out.println("EVENT NAME BPMN");
+    	for(String s : eventsNameBPMN) {
+    		System.out.println(s);
+		}
+		System.out.println("COMPARE FLUX");
     	for (Flux f : mfcFlux) {
-    		if (!eventsNameBPMN.contains(f.getName())) {
+    		System.out.println(f.getLibelle());
+			System.out.println(eventsNameBPMN.contains(f.getLibelle()));
+    		if (!eventsNameBPMN.contains(f.getLibelle())) {
     			return false;
     		}
-    		return true;
     	}
-        return false;
+        return true;
     }
     
     /**
@@ -85,9 +92,8 @@ public class DiagrammeComparator {
     		if(!actors.contains(e.getName())) {
     			return false;
     		}
-    		return true;
     	}
-    	return false;
+    	return true;
     }
     
     
@@ -115,7 +121,7 @@ public class DiagrammeComparator {
     	Set<Process> piscines = this.m_Bpmn.getProcess();
     	for (Process piscine : piscines) { //toutes les piscines
     		Set<Event> subEvents = piscine.getEvent();
-    		events.addAll(events);
+    		events.addAll(subEvents);
     	}
     	return events;
     }

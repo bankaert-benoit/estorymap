@@ -31,12 +31,13 @@ public class Mcd {
 		this.entities = entities;
 	}
 
+	public Mcd() {}
+
 	@Override
 	public String toString() {
 		return "Mcd{" +
 				"id_mcd=" + id_mcd +
 				", titre='" + titre + '\'' +
-				", entities=" + entities.toString() +
 				'}';
 	}
 }

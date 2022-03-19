@@ -39,6 +39,8 @@ public class Event {
 		this.isEnd = isEnd;
 	}
 
+	public Event() {}
+
 	@Override
 	public String toString() {
 		return "Event{" +

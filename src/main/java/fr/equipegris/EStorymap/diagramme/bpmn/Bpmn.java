@@ -32,12 +32,14 @@ public class Bpmn {
 		this.list_process = processes;
 	}
 
+	public Bpmn() {}
+
 	@Override
 	public String toString() {
 		return "Bpmn{" +
 				"id_bpmn=" + id_bpmn +
 				", titre='" + titre + '\'' +
-				", list_process=" + list_process.toString() +
+				", process='" + list_process.toString() + '\'' +
 				'}';
 	}
 }

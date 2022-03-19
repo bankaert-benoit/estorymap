@@ -20,6 +20,8 @@ public class Attribut {
         this.type = type;
     }
 
+    public Attribut() {}
+
     public Long getId() {
         return id;
     }
