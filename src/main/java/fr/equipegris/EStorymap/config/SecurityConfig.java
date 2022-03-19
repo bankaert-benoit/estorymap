@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .tokenEndpoint().accessTokenResponseClient(accessTokenResponseClient());
         // Autre configuration
         http.cors().and().csrf().disable();
-        http.headers().frameOptions().sameOrigin();
+        http.headers().frameOptions().disable();
     }
 
     @Bean
