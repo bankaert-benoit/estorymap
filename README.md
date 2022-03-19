@@ -17,4 +17,8 @@ C'est une application d'analyse de fichiers liés à l'analyse fonctionnelle. El
 
 ### Dans Eclipse :
 
-Importer le code source, `Run as` `Java Application` puis `localhost:8080` sur un navigateur.
+Importer le code source, `Run as` `Java Application` puis `localhost:8081` sur un navigateur.
+
+### Dans un terminale :
+
+Dans le dossier du projet, `./mvnw run` puis `localhost:8081` sur un navigateur.
