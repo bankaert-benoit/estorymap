@@ -3,8 +3,6 @@ package fr.equipegris.EStorymap.diagramme.mfc;
 import fr.equipegris.EStorymap.diagramme.mfc.composant.Acteur;
 import fr.equipegris.EStorymap.diagramme.mfc.composant.Flux;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -30,6 +28,9 @@ public class Mfc {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
 	private Set<Flux> flux;
+	public Set<Flux> getFlux(){
+		return this.flux;
+	}
 
 	public Mfc(String titre, Set<Acteur> acteurs, Set<Flux> flux) {
 		this.titre = titre;
@@ -37,13 +38,13 @@ public class Mfc {
 		this.flux = flux;
 	}
 
+	public Mfc(){}
+
 	@Override
 	public String toString() {
 		return "Mfc{" +
 				"id_mfc=" + id_mfc +
 				", titre='" + titre + '\'' +
-				", acteurs=" + acteurs.toString() +
-				", flux=" + flux.toString() +
 				'}';
 	}
 }

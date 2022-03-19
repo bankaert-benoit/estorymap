@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>eStoryMap</title>
+    <meta name="description" content="Outil de comparaison de diagrammes BPMN, MCF, et MCD.">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="assets/css/Login-Box-En.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <header style="background: rgba(255,255,255,0);height: 61px;">
+        <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button" style="height: 65px;background: #022534;border: 1.4px none rgb(255,255,255);border-bottom: 0.1px solid rgba(255,255,255,0.33);">
+            <div class="container"><a class="navbar-brand" href="#" style="color: rgb(255,255,255);font-size: 24px;">eStoryMap</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html" style="color: #ffffff;">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="settings.html" style="color: #ffffff;">Paramètres</a></li>
+                </ul><span class="d-xxl-flex actions"> <a class="btn btn-light action-button" role="button" id="login-button" href="/oauth2/authorization/google" style="background: #56c6c6;border-radius: 32px;margin-bottom: 25px;margin-top: 25px;height: 40px;width: 120px;color: rgb(255,255,255);border-style: none;">Connexion</a><img class="img-fluid" id="user-pic" style="border-radius: 50%;width: 50px;height: 50px;margin: auto;" alt="profil-picture" src="assets/img/default-profil-picture.jpg"></span>
+            </div>
+        </nav>
+    </header>
+    <div class="mx-auto" style="width: 80%;">
+        <h1 id="project-name" class="text-center" style="margin-top: 30px;margin-bottom: 30px;font-weight: bold;">Nom du projet</h1>
+        <div class="mx-auto box" style="width: auto;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6" style="border-right: 0.1px solid rgba(0,0,0,0.2) ;">
+                        <h2 style="text-align: center;padding-bottom: 20px;border-bottom: 0.1px solid rgba(0,0,0,0.2);margin-right: 10px;margin-left: 10px;">Importer mon fichier</h2>
+                        <div><input type="file" id="import-file" style="margin-top: 30px;margin-left: 70px;margin-bottom: 20px;"></div>
+                        <p style="padding: 0px;text-align: center;">Veuillez indiquer de quel type de diagramme il s'agit :</p>
+                        <div id="label-group" style="margin-left: 50px;padding-top: 20px;padding-bottom: 20px;border-top-width: 0.1px;border-top-color: rgba(0,0,0,0.2);border-bottom-width: 0.1px;border-bottom-color: rgba(0,0,0,0.2);">
+                            <div class="form-check"><input class="form-check-input radio-check" type="radio" id="formCheck-3" name="diagram-type"><label class="form-check-label" for="formCheck-3">MCD</label></div>
+                            <div class="form-check"><input class="form-check-input radio-check" type="radio" id="formCheck-1" name="diagram-type"><label class="form-check-label" for="formCheck-1">BPMN</label></div>
+                            <div class="form-check"><input class="form-check-input radio-check" type="radio" id="formCheck-2" name="diagram-type"><label class="form-check-label" for="formCheck-2">MCF</label></div>
+                        </div><button class="btn btn-light d-lg-flex mx-auto justify-content-lg-center action-button" id="import-button" type="button" style="background: #56c6c6;color: rgb(255,255,255);border-radius: 32px;margin-bottom: 25px;margin-top: 10px;height: 40px;width: 50%;" onclick="uploadFile()">Importer</button>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 style="text-align: center;padding-bottom: 20px;border-bottom: 0.1px solid rgba(0,0,0,0.2);margin-right: 10px;margin-left: 10px;">Mes fichiers</h2>
+                        <p id="file-list"></p>
+                    </div>
+                </div>
+            </div>
+        </div><a id="compare-btn" class="btn btn-light d-lg-flex align-items-center mx-auto justify-content-lg-center action-button" role="button" href="/compare" style="background: #56c6c6;color: rgb(255,255,255);border-radius: 32px;margin-bottom: 25px;margin-top: 50px;height: 50px;width: 30%;" >ANALYSER</a>
+    </div>
+    <footer class="footer-basic" style="background: #022534;">
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="index.html" style="color: #ffffff;">Accueil</a></li>
+            <li class="list-inline-item"></li>
+            <li class="list-inline-item"><a href="about.html" style="color: #ffffff;">A propos</a></li>
+            <li class="list-inline-item"></li>
+            <li class="list-inline-item"><a href="/" style="color: #ffffff;">Privacy Policy</a></li>
+        </ul>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/analyse.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

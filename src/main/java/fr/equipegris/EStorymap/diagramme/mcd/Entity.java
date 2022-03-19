@@ -1,6 +1,7 @@
 package fr.equipegris.EStorymap.diagramme.mcd;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * 
@@ -8,8 +9,8 @@ import javax.persistence.*;
  *
  */
 
-@Entity(name = "Entity")
-public class McdEntity {
+@javax.persistence.Entity
+public class Entity {
 	
 	@Id
 	@GeneratedValue ( strategy = GenerationType . SEQUENCE , generator =" Seq_entity ")
@@ -28,6 +29,27 @@ public class McdEntity {
 	private Mcd mcd;
 	public Mcd getMcd() {return this.mcd;}
 	public void setMcd(Mcd m) {}
-	
 
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "id")
+	private Set<Attribut> attributs;
+	public Set<Attribut> getAttributs(){return this.attributs;}
+	public void setAttributs(Set<Attribut> attributs){this.attributs = attributs;}
+
+
+	public Entity(String name, Set<Attribut> attributs) {
+		this.name = name;
+		this.attributs = attributs;
+	}
+
+	public Entity() {}
+
+	@Override
+	public String toString() {
+		return "Entity{" +
+				"id_entity=" + id_entity +
+				", name='" + name + '\'' +
+				", mcd=" + mcd +
+				", attributs=" + attributs.toString() +
+				'}';
+	}
 }

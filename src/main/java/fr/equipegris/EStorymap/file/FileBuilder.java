@@ -1,14 +1,25 @@
 package fr.equipegris.EStorymap.file;
 
-import com.nimbusds.oauth2.sdk.id.Actor;
+
+import fr.equipegris.EStorymap.diagramme.bpmn.*;
+import fr.equipegris.EStorymap.diagramme.bpmn.Process;
+import fr.equipegris.EStorymap.diagramme.mcd.Attribut;
+import fr.equipegris.EStorymap.diagramme.mcd.Entity;
+import fr.equipegris.EStorymap.diagramme.mcd.Mcd;
 import fr.equipegris.EStorymap.diagramme.mfc.Mfc;
 import fr.equipegris.EStorymap.diagramme.mfc.composant.Acteur;
 import fr.equipegris.EStorymap.diagramme.mfc.composant.Flux;
+import org.hibernate.dialect.PostgreSQL10Dialect;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+
+import javax.print.Doc;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -16,9 +27,7 @@ import org.w3c.dom.Document;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class FileBuilder {
@@ -35,6 +44,31 @@ public class FileBuilder {
         Set<Flux> flux = getMfcFlux(doc);
 
         return new Mfc(titre, acteurs, flux);
+    }
+
+    public static Mcd buildMcd(MultipartFile file) {
+        String titre = file.getOriginalFilename();
+        Document doc = null;
+        try {
+            doc = fileToDocument(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Set<Entity> entities = getMcdEntity(doc);
+
+        return new Mcd(titre,entities);
+    }
+
+    public static Bpmn buildBpmn(MultipartFile file) {
+        String titre = file.getOriginalFilename();
+        Document doc = null;
+        try {
+            doc = fileToDocument(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Set<Process> processes = getBpmnProcess(doc);
+        return new Bpmn(titre,processes);
     }
 
     private static Document fileToDocument(MultipartFile file) throws IOException {
@@ -100,4 +134,99 @@ public class FileBuilder {
         return flux;
     }
 
+    private static Set<Entity> getMcdEntity(Document doc){
+        Set<Entity> entities = new HashSet<>();
+        NodeList nodes = doc.getElementsByTagName("entite");
+        for(int i = 0; i < nodes.getLength(); i++){
+            Node node = nodes.item(i);
+            NodeList attribut = node.getChildNodes();
+            if (node.getNodeType() == Node.ELEMENT_NODE ) {
+                Element element = (Element) node;
+                String nom = element.getAttribute("name");
+
+                entities.add(new Entity(nom, getMcdEntityAttribut(attribut)));
+            }
+        }
+        return entities;
+    }
+
+    private static Set<Attribut> getMcdEntityAttribut(NodeList attribut){
+        Set<Attribut> res = new HashSet<>();
+        for(int i = 0; i < attribut.getLength(); i++){
+            Node node = attribut.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String nom = element.getAttribute("name");
+                String type = element.getAttribute("type");
+                res.add(new Attribut(nom,type));
+            }
+        }
+        return res;
+    }
+
+    private static Set<Process> getBpmnProcess(Document doc) {
+        Set<Process> processes = new HashSet<>();
+        NodeList nodes = doc.getElementsByTagName("bpmn:process");
+        for(int i = 0; i < nodes.getLength(); i++ ) {
+            Node node = nodes.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String participant = getBpmnParticipantName(element.getAttribute("id"),doc);
+                Set<Event> events = getBpmnProcessEvent(node.getChildNodes());
+                Set<Activity> activities = getBpmnProcessActivity(node.getChildNodes());
+                processes.add(new Process(participant,events,activities));
+            }
+
+        }
+        return processes;
+    }
+
+    private static String getBpmnParticipantName(String processId, Document doc){
+        String res = "";
+        NodeList nodes = doc.getElementsByTagName("bpmn:participant");
+        for(int i = 0; i < nodes.getLength(); i++) {
+            Node node = nodes.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                if ( element.getAttribute("processRef").equals(processId)){
+                    res = element.getAttribute("name");
+                }
+            }
+        }
+        return res;
+    }
+
+    private static Set<Event> getBpmnProcessEvent(NodeList event){
+        Set<Event> events = new HashSet<>();
+        for(int i = 0; i < event.getLength(); i++) {
+            Node node = event.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                if (element.getAttribute("id").contains("Event")){
+                    String name = element.getAttribute("name");
+                    boolean isStart = element.getTagName().equals("bpmn:startEvent");
+                    boolean isEnd = element.getTagName().equals("bpmn:endEvent");
+                    events.add(new Event(name,isStart,isEnd));
+                }
+            }
+
+
+        }
+        return events;
+    }
+
+    private static Set<Activity> getBpmnProcessActivity(NodeList activity){
+        Set<Activity> activities = new HashSet<>();
+        for(int i = 0; i < activity.getLength(); i++) {
+            Node node = activity.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                if (element.getAttribute("id").contains("Activity")){
+                    String name = element.getAttribute("name");
+                    activities.add(new Activity(name));
+                }
+            }
+        }
+        return activities;
+    }
 }

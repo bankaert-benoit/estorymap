@@ -11,4 +11,7 @@ public interface ProjetRepository extends CrudRepository<Projet,Long> {
     @Query("SELECT p FROM Projet p WHERE owner = ?1")
     Iterable<Projet> getProjectByOwner(User owner);
 
+    @Query("SELECT p FROM Projet p where id = ?1")
+    Projet findProjetById(Long id);
+
 }

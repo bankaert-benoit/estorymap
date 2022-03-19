@@ -5,7 +5,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-@Entity
+@javax.persistence.Entity
 @Table(name="MCD")
 public class Mcd {
 	
@@ -22,9 +22,22 @@ public class Mcd {
 	public void setTitre(String t) {this.titre=t;}
 	
 	@OneToMany(mappedBy="id_entity")
-	private Set<McdEntity> mcdEntities =  new HashSet<McdEntity>(); 
-	public void addEntity(McdEntity e) { mcdEntities.add(e) ;}
-	public Set<McdEntity> getProcess() {return mcdEntities;} 
-	
-	
+	private Set<Entity> entities;
+	public void addEntity(Entity e) { entities.add(e) ;}
+	public Set<Entity> getProcess() {return entities;}
+
+	public Mcd(String titre, Set<Entity> entities){
+		this.titre = titre;
+		this.entities = entities;
+	}
+
+	public Mcd() {}
+
+	@Override
+	public String toString() {
+		return "Mcd{" +
+				"id_mcd=" + id_mcd +
+				", titre='" + titre + '\'' +
+				'}';
+	}
 }

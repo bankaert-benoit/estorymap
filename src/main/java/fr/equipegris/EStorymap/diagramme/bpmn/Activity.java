@@ -21,5 +21,19 @@ public class Activity {
     private Process process;
     public void setProcess(Process a) {process = a;}
     public Process getRealisateur() {return process;}
-	
+
+    public Activity(String name){
+		this.name = name;
+	}
+
+	public Activity() {}
+
+	@Override
+	public String toString() {
+		return "Activity{" +
+				"id_activity=" + id_activity +
+				", name='" + name + '\'' +
+				", process=" + process +
+				'}';
+	}
 }
