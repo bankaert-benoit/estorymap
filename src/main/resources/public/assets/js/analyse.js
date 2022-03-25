@@ -89,7 +89,7 @@ function testTrueFalse()
         }
 }
 
-function succes()
+function success()
 {
     document.getElementById("success").setAttribute("style", "display:initial;");
 }
