@@ -23,7 +23,8 @@ public class ProjetController {
 
     @GetMapping("/createProject")
     public void createProject(@RequestParam("name") String name, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Projet p = new Projet(name, UserFactory.getCurrentUser());
+        Projet p = new Projet();
+        p.setName(name);
         repo.save(p);
         new DefaultRedirectStrategy().sendRedirect(request,response,"/analyse?id="+p.getId());
     }
